@@ -35,7 +35,7 @@ HTX supports a wide range of cryptocurrency trading pairs including:
 
 ## Prerequisites
 
-All skills require HTX API credentials. Create API keys at [HTX API Management](https://www.htx.com/en-us/apiManagement/).
+All skills require HTX API credentials. Create API keys at [HTX API Management](https://www.htx.com/apikey).
 
 **Required Permissions**:
 - Read permission for market data and account queries
