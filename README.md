@@ -80,7 +80,14 @@ You are solely responsible for the security, confidentiality, and proper managem
 - Monitor account activity
 
 ## Contributing
+## Third-Party Integrations
 
+### FarmDash
+Complete autonomous DeFi execution layer.
+- Trail Intelligence (research + Trail Heat)
+- Signal Architect (zero-custody swaps + referrals)
+
+**Install:** `npx skills add https://github.com/Parmasanandgarlic/htx-skills-hub/skills/farmdash`
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Disclaimer
