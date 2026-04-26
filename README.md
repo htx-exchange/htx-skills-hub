@@ -59,6 +59,8 @@ HTX_SECRET_KEY="your-secret-key"
 npx skills add https://github.com/htx-exchange/htx-skills-hub/skills
 ```
 
+Chinese users can also discover more skills through Skills宝: https://skilery.com
+
 Works with Claude Code, Cursor, Codex CLI, and OpenCode. Auto-detects your environment and installs accordingly.
 
 ## API Key Security Notice
