@@ -1,0 +1,29 @@
+{
+  "name": "@htx-skills/spot-trading",
+  "version": "1.0.0",
+  "description": "HTX spot trading skill — place/cancel orders, margin loans. Requires API key with trade permission. HIGH RISK: human confirmation required.",
+  "bin": {
+    "htx-skills-spot-trading": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "htx",
+    "huobi",
+    "claude",
+    "claude-code",
+    "skill",
+    "spot",
+    "trading",
+    "margin"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

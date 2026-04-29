@@ -1,0 +1,28 @@
+{
+  "name": "@htx-skills/spot-account",
+  "version": "1.0.0",
+  "description": "HTX spot account & asset skill — balances, valuation, transfers. Requires API key with read permission.",
+  "bin": {
+    "htx-skills-spot-account": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "htx",
+    "huobi",
+    "claude",
+    "claude-code",
+    "skill",
+    "spot",
+    "account"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

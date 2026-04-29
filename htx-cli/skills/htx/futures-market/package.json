@@ -1,0 +1,30 @@
+{
+  "name": "@htx-skills/futures-market",
+  "version": "1.0.0",
+  "description": "HTX USDT-M futures market data skill — contract info, funding rates, OI, klines, depth. Mostly public; a few endpoints need read permission.",
+  "bin": {
+    "htx-skills-futures-market": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "htx",
+    "huobi",
+    "claude",
+    "claude-code",
+    "skill",
+    "futures",
+    "usdt-m",
+    "perpetual",
+    "market-data"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

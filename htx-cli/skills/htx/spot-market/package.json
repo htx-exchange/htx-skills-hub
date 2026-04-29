@@ -1,0 +1,28 @@
+{
+  "name": "@htx-skills/spot-market",
+  "version": "1.0.0",
+  "description": "HTX spot market data skill (public endpoints, zero risk). Installs into your Claude skills directory.",
+  "bin": {
+    "htx-skills-spot-market": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "htx",
+    "huobi",
+    "claude",
+    "claude-code",
+    "skill",
+    "spot",
+    "market-data"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

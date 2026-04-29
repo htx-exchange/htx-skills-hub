@@ -1,0 +1,30 @@
+{
+  "name": "@htx-skills/futures-trading",
+  "version": "1.0.0",
+  "description": "HTX USDT-M futures trading skill — open/close positions, leverage, trigger orders, TP/SL. Requires API key with trade permission. HIGH RISK: human confirmation required.",
+  "bin": {
+    "htx-skills-futures-trading": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "htx",
+    "huobi",
+    "claude",
+    "claude-code",
+    "skill",
+    "futures",
+    "usdt-m",
+    "trading",
+    "perpetual"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
