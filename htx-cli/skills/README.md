@@ -5,6 +5,9 @@ wrap the [`htx-cli`](../) Rust binary (the HTX — formerly Huobi — REST API
 harness). Each skill is scoped to a single permission tier so that Agents load
 only what they need and users can grant the narrowest possible API-key rights.
 
+- GitHub: https://github.com/htx-exchange/htx-skills-hub
+- Latest release: https://github.com/htx-exchange/htx-skills-hub/releases/tag/v1.0.0
+
 | Skill | Endpoints | Auth | Risk |
 | --- | --- | --- | --- |
 | [`spot-market`](./htx/spot-market)         | 15 | none          | zero  |

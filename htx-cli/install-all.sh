@@ -4,6 +4,9 @@ set -e
 # ──────────────────────────────────────────────────────────────
 # htx-cli + skills unified installer
 #
+# Releases: https://github.com/htx-exchange/htx-skills-hub/releases
+#   Initial release: https://github.com/htx-exchange/htx-skills-hub/releases/tag/v1.0.0
+#
 # Runs two independent installers in sequence:
 #   1. ./install.sh             — the htx-cli binary (GitHub release).
 #   2. ./skills/install-all.sh  — all 6 Claude Code skills.

@@ -4,6 +4,9 @@ set -e
 # ──────────────────────────────────────────────────────────────
 # Install (or uninstall) all six HTX Skills Hub skills in one shot.
 #
+# Releases: https://github.com/htx-exchange/htx-skills-hub/releases
+#   Initial release: https://github.com/htx-exchange/htx-skills-hub/releases/tag/v1.0.0
+#
 # Each skill's bin/install.js does the real work — this script just
 # loops over them with a consistent set of options.
 #

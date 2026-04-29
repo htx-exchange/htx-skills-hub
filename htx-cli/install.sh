@@ -5,11 +5,11 @@ set -e
 # htx-cli installer / updater (macOS / Linux)
 #
 # Usage:
-#   curl -sSL https://raw.githubusercontent.com/flamez-hue/htx-skills-hub/main/htx-cli/install.sh | sh
-#   curl -sSL https://raw.githubusercontent.com/flamez-hue/htx-skills-hub/main/htx-cli/install.sh | sh -s -- --beta
+#   curl -sSL https://raw.githubusercontent.com/htx-exchange/htx-skills-hub/main/htx-cli/install.sh | sh
+#   curl -sSL https://raw.githubusercontent.com/htx-exchange/htx-skills-hub/main/htx-cli/install.sh | sh -s -- --beta
 #
-# Releases: https://github.com/flamez-hue/htx-skills-hub/releases
-#   Initial release: https://github.com/flamez-hue/htx-skills-hub/releases/tag/v1.0.0
+# Releases: https://github.com/htx-exchange/htx-skills-hub/releases
+#   Initial release: https://github.com/htx-exchange/htx-skills-hub/releases/tag/v1.0.0
 #
 #   # Install from a local dist/ directory (built by ./build.sh):
 #   HTX_LOCAL_DIST=./dist ./install.sh
@@ -31,7 +31,7 @@ set -e
 #   Windows: see install.ps1 (PowerShell)
 # ──────────────────────────────────────────────────────────────
 
-REPO="${HTX_REPO:-flamez-hue/htx-skills-hub}"
+REPO="${HTX_REPO:-htx-exchange/htx-skills-hub}"
 BINARY="htx-cli"
 INSTALL_DIR="$HOME/.local/bin"
 CACHE_DIR="$HOME/.htx-cli"

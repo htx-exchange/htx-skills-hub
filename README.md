@@ -2,8 +2,8 @@
 
 HTX (formerly Huobi) skills for AI coding assistants. Provides spot & USDT-M futures market data, account queries, order placement, leverage and position management, and internal transfers via a single Go-based CLI harness (`htx-cli`).
 
-- GitHub: https://github.com/flamez-hue/htx-skills-hub
-- Latest release: https://github.com/flamez-hue/htx-skills-hub/releases/tag/v1.0.0
+- GitHub: https://github.com/htx-exchange/htx-skills-hub
+- Latest release: https://github.com/htx-exchange/htx-skills-hub/releases/tag/v1.0.0
 
 ## Available Skills
 
@@ -111,13 +111,13 @@ The skills work together in typical trading flows:
 Auto-detects your platform, downloads the latest **stable** release, verifies SHA256 checksum, and installs to `~/.local/bin`:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/flamez-hue/htx-skills-hub/main/htx-cli/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/htx-exchange/htx-skills-hub/main/htx-cli/install.sh | sh
 ```
 
 To install the latest **beta** version (includes pre-releases):
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/flamez-hue/htx-skills-hub/main/htx-cli/install.sh | sh -s -- --beta
+curl -sSL https://raw.githubusercontent.com/htx-exchange/htx-skills-hub/main/htx-cli/install.sh | sh -s -- --beta
 ```
 
 > **Note:** The default installer always uses the latest stable release; `--beta` is opt-in only.
@@ -127,7 +127,7 @@ curl -sSL https://raw.githubusercontent.com/flamez-hue/htx-skills-hub/main/htx-c
 Auto-detects your platform, downloads the latest **stable** release, verifies SHA256 checksum, and installs to `%USERPROFILE%\.local\bin`:
 
 ```powershell
-irm https://raw.githubusercontent.com/flamez-hue/htx-skills-hub/main/htx-cli/install.ps1 | iex
+irm https://raw.githubusercontent.com/htx-exchange/htx-skills-hub/main/htx-cli/install.ps1 | iex
 ```
 
 ## Build from source
