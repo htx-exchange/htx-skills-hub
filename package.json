@@ -1,0 +1,38 @@
+{
+  "name": "@sheerl/htx-cli",
+  "version": "0.1.0",
+  "description": "HTX exchange CLI for AI agents — wraps HTX REST API into a clean command interface",
+  "type": "module",
+  "bin": {
+    "htx-cli": "./bin/htx-cli.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test src/**/*.test.js",
+    "smoke": "node bin/htx-cli.js spot-market timestamp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sheerl/htx-skills-hub.git",
+    "directory": "htx-cli"
+  },
+  "homepage": "https://htx-skills-hub.vercel.app",
+  "bugs": {
+    "url": "https://github.com/sheerl/htx-skills-hub/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": ["htx", "huobi", "cli", "ai-agent", "trading", "crypto"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {}
+}

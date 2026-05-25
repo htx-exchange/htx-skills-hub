@@ -1,158 +1,70 @@
-# HTX Skills
+# HTX AI Skills
 
-HTX (formerly Huobi) skills for AI coding assistants. Provides spot & USDT-M futures market data, account queries, order placement, leverage and position management, and internal transfers via a single Go-based CLI harness (`htx-cli`).
+> HTX's open trading protocol for the AI Agent ecosystem — install with a single command and let your AI Agent query markets, manage assets, and execute spot and futures trades through natural language.
 
-- GitHub: https://github.com/htx-exchange/htx-skills-hub
-- Latest release: https://github.com/htx-exchange/htx-skills-hub/releases/tag/v1.0.0
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Skills](https://img.shields.io/badge/skills-16-blue.svg)](htx-cli/skills/htx)
+[![Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](https://htx-skills-hub.vercel.app)
 
-## Available Skills
+## Overview
 
-| Skill | Description |
-|-------|-------------|
-| `htx-spot-market` | Public spot market data — tickers, klines, depth, trades, symbols, reference data (15 endpoints, no key) |
-| `htx-spot-account` | Spot balances, valuations, transaction history, internal transfers (9 endpoints, read key) |
-| `htx-spot-trading` | Place / cancel / query spot orders, margin borrow-lend (11 endpoints, trade key) |
-| `htx-futures-market` | USDT-M perpetual market data — contract info, funding rates, OI, klines, depth, liquidations, sentiment (36 endpoints, mostly public) |
-| `htx-futures-account` | USDT-M futures account & position query, leverage query, sub-account management, internal transfers (30 endpoints, read key) |
-| `htx-futures-trading` | Place / cancel / query futures orders, adjust leverage and position mode, trigger and TP/SL strategy orders (50 endpoints, trade key) |
+HTX AI Skills is HTX's open marketplace of AI trading Skills. Developers can browse and install modular Skills to extend their AI trading assistant's capabilities, covering market data queries, trade execution, derivatives analysis, risk monitoring, and more.
 
-Skills are split by permission tier so agents load only what they need and users can grant the narrowest possible API-key rights.
+- One-line installation into any AI Agent
+- Runs locally — your API Key never leaves your machine
+- Mandatory manual confirmation for all write operations
+- MIT-licensed, fully auditable and customizable
 
-## Supported Products
+## Skills Catalog
 
-HTX Spot (all pairs) and HTX USDT-M Perpetual Futures.
+### Spot
+- [`spot-market`](htx-cli/skills/htx/spot-market) — Spot market data
+- [`spot-account`](htx-cli/skills/htx/spot-account) — Spot account
+- [`spot-trading`](htx-cli/skills/htx/spot-trading) — Spot trading
 
-## Prerequisites
+### Futures
+- [`futures-market`](htx-cli/skills/htx/futures-market) — Futures market data
+- [`funding-rate`](htx-cli/skills/htx/funding-rate) — Funding Rate
+- [`oi-tracker`](htx-cli/skills/htx/oi-tracker) — Open Interest tracking
+- [`elite-positioning`](htx-cli/skills/htx/elite-positioning) — Elite Long/Short Ratio
+- [`liquidation-stream`](htx-cli/skills/htx/liquidation-stream) — Liquidation stream
+- [`mark-price`](htx-cli/skills/htx/mark-price) — Mark Price / Premium / Basis
+- [`settlement`](htx-cli/skills/htx/settlement) — Settlement and Insurance Fund
+- [`futures-account`](htx-cli/skills/htx/futures-account) — Futures account
+- [`futures-trading`](htx-cli/skills/htx/futures-trading) — Futures trading
 
-Authenticated skills require HTX API credentials. Apply at [HTX API Management](https://www.htx.com/en-us/apikey/).
+### Analysis
+- [`technical-analysis`](htx-cli/skills/htx/technical-analysis) — Technical indicator analysis
+- [`derivatives-analyst`](htx-cli/skills/htx/derivatives-analyst) — Derivatives pressure analysis
+- [`sentiment-analyst`](htx-cli/skills/htx/sentiment-analyst) — Market sentiment
+- [`market-overview`](htx-cli/skills/htx/market-overview) — Market overview
 
-Recommended: export credentials as environment variables:
-
-```bash
-export HTX_API_KEY="your-access-key-id"
-export HTX_SECRET_KEY="your-secret-key"
-```
-
-Or use the CLI-managed config:
-
-```bash
-htx-cli config set-key    <AccessKeyId>
-htx-cli config set-secret <SecretKey>
-htx-cli config show
-```
-
-Recommended key hygiene:
-
-- Use a **read-only** key for `htx-spot-account` / `htx-futures-account`.
-- Use a separate **trade-enabled** key (ideally IP-allow-listed, no withdrawal permission) for `htx-spot-trading` / `htx-futures-trading`.
-- Market-data skills need **no key at all**.
-
-**Security warning**: Never commit credentials to git and never expose them in logs, screenshots, or chat messages.
-
-## Installation
-
-### Recommended (binary + all skills)
+## Quick Start
 
 ```bash
-./htx-cli/install-all.sh                              # binary (GitHub release) + all skills
-./htx-cli/install-all.sh --binary-only                # binary only
-./htx-cli/install-all.sh --skills-only                # skills only
-./htx-cli/install-all.sh --only spot-market,spot-account   # skills subset
-./htx-cli/install-all.sh --uninstall                  # remove skills (binary left in place)
-./htx-cli/install-all.sh --help
-```
-
-```bash
-source ~/.zshrc # or source ~/.bashrc
-```
-
-`npx` (Node.js ≥ 18) is required for the skills step; if it's missing, the binary still installs and the script prints a warning.
-
-### Skills only
-
-```bash
-./htx-cli/skills/install-all.sh                       # all six from the local repo
-./htx-cli/skills/install-all.sh --registry            # from npm registry (@htx-skills/*)
-./htx-cli/skills/install-all.sh --only spot-market
-./htx-cli/skills/install-all.sh --uninstall
-```
-
-Individual skills:
-
-```bash
+# Example: spot-market
 npx -y @htx-skills/spot-market install
-npx -y @htx-skills/futures-trading install
 ```
 
-The installer copies `SKILL.md`, `LICENSE.md` and `references/` into the first writable target of: `--dest <dir>` → `$CLAUDE_SKILLS_DIR` → `$XDG_DATA_HOME/claude/skills` → `~/.claude/skills`.
+After installation, ask your AI Agent in plain natural language:
 
-## Skill Workflows
+> "What's the current price of BTC?"
+> "Show me the 4H candlestick chart for ETH/USDT"
+> "Scan funding rates across the whole market"
 
-The skills work together in typical trading flows:
+## Demo Site
 
-**Spot Price Check**: `htx-spot-market` (ticker / kline / depth)
+Visit https://htx-skills-hub.vercel.app to browse all 16 Skills.
 
-**Spot Buy**: `htx-spot-market` (price discovery) → `htx-spot-account` (check balance) → `htx-spot-trading` (place order)
-
-**Portfolio Overview**: `htx-spot-account` (spot balances) → `htx-futures-account` (positions + PnL) → `htx-spot-market` / `htx-futures-market` (mark-to-market)
-
-**Futures Research**: `htx-futures-market` (funding rate + OI + long/short ratio) → `htx-futures-market` (kline)
-
-**Open a Perp Position**: `htx-futures-market` (mark price) → `htx-futures-account` (available margin + max leverage) → `htx-futures-trading` (set leverage + place order)
-
-**Risk Management**: `htx-futures-account` (position + liq price) → `htx-futures-trading` (TP/SL trigger order) → `htx-futures-trading` (flash close)
-
-**Cross-product Transfer**: `htx-spot-account` (balance) → `htx-spot-account` (transfer spot→futures) → `htx-futures-account` (verify credit)
-
-## Install CLI
-
-### Shell Script (macOS / Linux)
-
-Auto-detects your platform, downloads the latest **stable** release, verifies SHA256 checksum, and installs to `~/.local/bin`:
+## Development
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/htx-exchange/htx-skills-hub/main/htx-cli/install.sh | sh
+git clone https://github.com/sheerl/htx-skills-hub.git
+cd htx-skills-hub/website
+python3 -m http.server 8000
+# Open http://localhost:8000
 ```
-
-To install the latest **beta** version (includes pre-releases):
-
-```bash
-curl -sSL https://raw.githubusercontent.com/htx-exchange/htx-skills-hub/main/htx-cli/install.sh | sh -s -- --beta
-```
-
-> **Note:** The default installer always uses the latest stable release; `--beta` is opt-in only.
-
-### PowerShell (Windows)
-
-Auto-detects your platform, downloads the latest **stable** release, verifies SHA256 checksum, and installs to `%USERPROFILE%\.local\bin`:
-
-```powershell
-irm https://raw.githubusercontent.com/htx-exchange/htx-skills-hub/main/htx-cli/install.ps1 | iex
-```
-
-## Build from source
-
-Requires Go 1.23+.
-
-```bash
-./htx-cli/build.sh                  # version inferred from git
-./htx-cli/build.sh v1.2.3           # explicit version tag
-VERSION=v1.2.3 ./htx-cli/build.sh   # via env
-```
-
-Output goes to `./dist/` (macOS / Linux / Windows binaries, archives, `checksums.txt`).
-
-## API Key Security Notice & Disclaimer
-
-**Production Usage** For stable and reliable usage, you must provide your own API credentials by setting:
-
-* `HTX_API_KEY`
-* `HTX_SECRET_KEY`
-
-You are solely responsible for the security, confidentiality, and proper management of your own API keys. The maintainers are not liable for any unauthorized access, asset loss, or damages resulting from improper key management, from trade-enabled keys executing orders under agent control, or from use of the skills outside their intended scope.
-
-**Trading Risk** Futures and margin trading involves a high risk of loss. Leverage amplifies both gains and losses — liquidation can wipe a position entirely. All write operations in `htx-spot-trading` and `htx-futures-trading` require explicit user confirmation, but final responsibility for every order placed rests with the user.
 
 ## License
 
-MIT — see each skill's `LICENSE.md`.
+MIT — see [LICENSE](LICENSE).
