@@ -1,0 +1,30 @@
+{
+  "name": "@htx-skills/funding-rate",
+  "version": "1.0.0",
+  "description": "HTX USDT-M perpetual funding rate skill — current rate, batch all-contract rates, historical series, estimated rate kline. Public, no API key.",
+  "bin": {
+    "htx-skills-funding-rate": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "htx",
+    "huobi",
+    "claude",
+    "claude-code",
+    "skill",
+    "futures",
+    "usdt-m",
+    "funding-rate",
+    "perpetual"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

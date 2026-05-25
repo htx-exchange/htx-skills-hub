@@ -1,0 +1,29 @@
+{
+  "name": "@htx-skills/oi-tracker",
+  "version": "1.0.0",
+  "description": "HTX USDT-M perpetual open interest skill — current OI snapshot and historical time series for trend and surge detection.",
+  "bin": {
+    "htx-skills-oi-tracker": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "htx",
+    "huobi",
+    "claude",
+    "claude-code",
+    "skill",
+    "futures",
+    "open-interest",
+    "perpetual"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

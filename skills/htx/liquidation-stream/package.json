@@ -1,0 +1,30 @@
+{
+  "name": "@htx-skills/liquidation-stream",
+  "version": "1.0.0",
+  "description": "HTX USDT-M perpetual liquidation orders skill — recent forced liquidation events for squeeze monitoring and cluster detection.",
+  "bin": {
+    "htx-skills-liquidation-stream": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "htx",
+    "huobi",
+    "claude",
+    "claude-code",
+    "skill",
+    "futures",
+    "liquidation",
+    "squeeze",
+    "perpetual"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

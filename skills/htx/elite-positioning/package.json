@@ -1,0 +1,30 @@
+{
+  "name": "@htx-skills/elite-positioning",
+  "version": "1.0.0",
+  "description": "HTX USDT-M perpetual elite (top-trader) long/short ratio skill — both account-based and position-based, the core smart-money sentiment signal.",
+  "bin": {
+    "htx-skills-elite-positioning": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "htx",
+    "huobi",
+    "claude",
+    "claude-code",
+    "skill",
+    "futures",
+    "long-short-ratio",
+    "smart-money",
+    "perpetual"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
