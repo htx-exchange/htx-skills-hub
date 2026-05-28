@@ -42,8 +42,7 @@ HTX AI Skills is HTX's open marketplace of AI trading Skills. Developers can bro
 ## Quick Start
 
 ```bash
-# Example: spot-market
-npx -y @htx-skills/spot-market install
+npx skills add https://github.com/htx-exchange/htx-skills-hub/skills
 ```
 
 After installation, ask your AI Agent in plain natural language:
@@ -52,14 +51,12 @@ After installation, ask your AI Agent in plain natural language:
 > "Show me the 4H candlestick chart for ETH/USDT"
 > "Scan funding rates across the whole market"
 
-## Demo Site
-
-Visit https://htx-skills-hub.vercel.app to browse all 16 Skills.
-
 ## Development
 
+
+
 ```bash
-git clone https://github.com/sheerl/htx-skills-hub.git
+git clone https://github.com/htx-exchange/htx-skills-hub.git
 cd htx-skills-hub/website
 python3 -m http.server 8000
 # Open http://localhost:8000
