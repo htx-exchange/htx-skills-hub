@@ -1,0 +1,30 @@
+{
+  "name": "@htx-skills/futures-account",
+  "version": "1.0.0",
+  "description": "HTX USDT-M futures account skill — positions, leverage, sub-accounts, transfers. Requires API key with read permission; transfers need write.",
+  "bin": {
+    "htx-skills-futures-account": "bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "references/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "htx",
+    "huobi",
+    "claude",
+    "claude-code",
+    "skill",
+    "futures",
+    "usdt-m",
+    "account",
+    "position"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

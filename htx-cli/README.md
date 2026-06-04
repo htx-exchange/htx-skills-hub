@@ -26,31 +26,6 @@ HTX Spot (all pairs) and HTX USDT-M Perpetual Futures.
 
 Authenticated skills require HTX API credentials. Apply at [HTX API Management](https://www.htx.com/en-us/apikey/).
 
-Recommended key hygiene:
-
-- Use a **read-only** key for `htx-spot-account` / `htx-futures-account`.
-- Use a separate **trade-enabled** key (ideally IP-allow-listed, no withdrawal permission) for `htx-spot-trading` / `htx-futures-trading`.
-- Market-data skills need **no key at all**.
-
-**Security warning**: Never commit credentials to git and never expose them in logs, screenshots, or chat messages.
-
-## Installation
-
-### Recommended (binary + all skills)
-
-```bash
-./htx-cli/install-all.sh                              # binary (GitHub release) + all skills
-./htx-cli/install-all.sh --binary-only                # binary only
-./htx-cli/install-all.sh --skills-only                # skills only
-./htx-cli/install-all.sh --only spot-market,spot-account   # skills subset
-./htx-cli/install-all.sh --uninstall                  # remove skills (binary left in place)
-./htx-cli/install-all.sh --help
-```
-
-```bash
-source ~/.zshrc # or source ~/.bashrc
-```
-
 Recommended: export credentials as environment variables:
 
 ```bash
@@ -66,23 +41,47 @@ htx-cli config set-secret <SecretKey>
 htx-cli config show
 ```
 
+Recommended key hygiene:
+
+- Use a **read-only** key for `htx-spot-account` / `htx-futures-account`.
+- Use a separate **trade-enabled** key (ideally IP-allow-listed, no withdrawal permission) for `htx-spot-trading` / `htx-futures-trading`.
+- Market-data skills need **no key at all**.
+
+**Security warning**: Never commit credentials to git and never expose them in logs, screenshots, or chat messages.
+
+## Installation
+
+### Recommended (binary + all skills)
+
+```bash
+./install-all.sh                              # binary (GitHub release) + all skills
+./install-all.sh --binary-only                # binary only
+./install-all.sh --skills-only                # skills only
+./install-all.sh --only spot-market,spot-account   # skills subset
+./install-all.sh --uninstall                  # remove skills (binary left in place)
+./install-all.sh --help
+```
+
+```bash
+source ~/.zshrc # or source ~/.bashrc
+```
+
 `npx` (Node.js ≥ 18) is required for the skills step; if it's missing, the binary still installs and the script prints a warning.
 
 ### Skills only
 
 ```bash
-./htx-cli/skills/install-all.sh                       # all six from the local repo
-./htx-cli/skills/install-all.sh --registry            # from npm registry (@htx-skills/*)
-./htx-cli/skills/install-all.sh --only spot-market
-./htx-cli/skills/install-all.sh --uninstall
+./skills/install-all.sh                       # all six from the local repo
+./skills/install-all.sh --registry            # from npm registry (@htx-skills/*)
+./skills/install-all.sh --only spot-market
+./skills/install-all.sh --uninstall
 ```
 
 Individual skills:
 
 ```bash
-npx -y skills add https://github.com/htx-exchange/htx-skills-hub/htx-cli/skills      
-npx -y skills add https://github.com/htx-exchange/htx-skills-hub/htx-cli/skills/htx/spot-market
-npx -y skills add https://github.com/htx-exchange/htx-skills-hub/htx-cli/skills/htx/futures-trading
+npx -y @htx-skills/spot-market install
+npx -y @htx-skills/futures-trading install
 ```
 
 The installer copies `SKILL.md`, `LICENSE.md` and `references/` into the first writable target of: `--dest <dir>` → `$CLAUDE_SKILLS_DIR` → `$XDG_DATA_HOME/claude/skills` → `~/.claude/skills`.
@@ -136,12 +135,33 @@ irm https://raw.githubusercontent.com/htx-exchange/htx-skills-hub/main/htx-cli/i
 Requires Go 1.23+.
 
 ```bash
-./htx-cli/build.sh                  # version inferred from git
-./htx-cli/build.sh v1.2.3           # explicit version tag
-VERSION=v1.2.3 ./htx-cli/build.sh   # via env
+./build.sh                  # version inferred from git
+./build.sh v1.2.3           # explicit version tag
+VERSION=v1.2.3 ./build.sh   # via env
 ```
 
 Output goes to `./dist/` (macOS / Linux / Windows binaries, archives, `checksums.txt`).
+
+## Repository layout
+
+```
+htx-cli/
+├── agent-harness-go/     # Go source for the binary
+├── openapi/              # OpenAPI specs
+├── skills/
+│   ├── install-all.sh    # skills bulk installer
+│   └── htx/
+│       ├── spot-market/
+│       ├── spot-account/
+│       ├── spot-trading/
+│       ├── futures-market/
+│       ├── futures-account/
+│       └── futures-trading/
+├── build.sh              # cross-compile
+├── install.sh            # binary installer (remote)
+├── install.ps1           # binary installer (Windows)
+└── install-all.sh        # binary + skills unified installer
+```
 
 ## API Key Security Notice & Disclaimer
 
