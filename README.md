@@ -80,8 +80,9 @@ source ~/.zshrc # or source ~/.bashrc
 Individual skills:
 
 ```bash
-npx -y @htx-skills/spot-market install
-npx -y @htx-skills/futures-trading install
+npx -y skills add https://github.com/flamez-hue/htx-skills-hub/htx-cli/skills      
+npx -y skills add https://github.com/flamez-hue/htx-skills-hub/htx-cli/skills/htx/spot-market
+npx -y skills add https://github.com/flamez-hue/htx-skills-hub/htx-cli/skills/htx/futures-trading
 ```
 
 The installer copies `SKILL.md`, `LICENSE.md` and `references/` into the first writable target of: `--dest <dir>` → `$CLAUDE_SKILLS_DIR` → `$XDG_DATA_HOME/claude/skills` → `~/.claude/skills`.
