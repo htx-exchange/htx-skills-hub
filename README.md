@@ -74,9 +74,8 @@ htx-cli skill list
 Or via npx (requires Node.js >= 18):
 
 ```bash
-npx -y @htx-exchange/htx-cli skill install spot-market
-npx -y @htx-exchange/htx-cli skill install all
-```
+npx skills add https://github.com/htx-exchange/htx-skills-hub/skills -d .claude
+```  
 
 One-liner (download CLI + install skill):
 
@@ -98,6 +97,25 @@ Or use the CLI directly:
 htx-cli spot-market timestamp
 htx-cli spot-market market-detail-merged -p symbol=btcusdt
 htx-cli futures-market kline -p contract_code=BTC-USDT -p period=4hour -p size=200
+```
+
+```bash
+source ~/.zshrc # or source ~/.bashrc
+```
+
+Recommended: export credentials as environment variables:
+
+```bash
+export HTX_API_KEY="your-access-key-id"
+export HTX_SECRET_KEY="your-secret-key"
+```
+
+Or use the CLI-managed config:
+
+```bash
+htx-cli config set-key    <AccessKeyId>
+htx-cli config set-secret <SecretKey>
+htx-cli config show
 ```
 
 ## License
