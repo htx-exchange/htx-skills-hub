@@ -100,33 +100,6 @@ htx-cli spot-market market-detail-merged -p symbol=btcusdt
 htx-cli futures-market kline -p contract_code=BTC-USDT -p period=4hour -p size=200
 ```
 
-## Demo Site
-
-Visit https://htx-skills-hub.vercel.app to browse all 16 Skills.
-
-## Development
-
-```bash
-git clone https://github.com/htx-exchange/htx-skills-hub.git
-cd htx-skills-hub/htx-cli
-
-# Run codegen (generate embedded skills module)
-node scripts/build.js --codegen-only
-
-# Build cross-platform binaries
-node scripts/build.js
-```
-
-Output:
-
-```
-dist/
-  htx-cli-darwin-arm64
-  htx-cli-darwin-x64
-  htx-cli-linux-x64
-  htx-cli-windows-x64.exe
-```
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
