@@ -1,0 +1,97 @@
+name: Release
+
+# Runs only on version tags. Never triggered by pull requests, so PR code cannot reach
+# the signing identity or release permissions.
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write      # keyless signing identity for attestations
+      attestations: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.x
+
+      - name: Tag must match package.json version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          pkg="v$(node -p "require('./package.json').version")"
+          [ "$TAG" = "$pkg" ] || { echo "Tag $TAG != package.json version $pkg"; exit 1; }
+
+      - name: Build binaries and SHA256SUMS
+        run: node scripts/build.js
+
+      - name: Embedded skills must be committed in sync
+        run: git diff --exit-code -- src/embedded-skills.js
+
+      - name: Verify all outputs exist and checksums match
+        run: |
+          set -euo pipefail
+          cd dist
+          for f in htx-cli-darwin-arm64 htx-cli-darwin-x64 htx-cli-linux-x64 htx-cli-windows-x64.exe; do
+            test -s "$f" || { echo "missing build output: $f"; exit 1; }
+          done
+          test "$(wc -l < SHA256SUMS | tr -d ' ')" -eq 4
+          sha256sum -c SHA256SUMS
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            dist/htx-cli-*
+            dist/SHA256SUMS
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-assets
+          path: |
+            dist/htx-cli-*
+            dist/SHA256SUMS
+            scripts/install.sh
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-assets
+          path: assets
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          find assets -type f
+          gh release create "$TAG" \
+            --repo "$REPO" \
+            --verify-tag \
+            --generate-notes \
+            --title "$TAG" \
+            assets/dist/htx-cli-* assets/dist/SHA256SUMS assets/scripts/install.sh

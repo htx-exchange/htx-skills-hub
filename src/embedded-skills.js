@@ -29,20 +29,20 @@ This skill **does not call REST endpoints directly**. It composes Layer 1 skills
 
 | Layer 1 skill | What this analyst pulls from it |
 |---------------|--------------------------------|
-| \`@htx-skills/funding-rate\` | current rate + 30-period history |
-| \`@htx-skills/oi-tracker\` | current OI + 24h trend |
-| \`@htx-skills/elite-positioning\` | account ratio + position ratio |
-| \`@htx-skills/liquidation-stream\` | recent 7d liquidations |
-| \`@htx-skills/mark-price\` | basis kline (last 20 bars) |
+| \`https://github.com/htx-exchange/htx-skills-hub/funding-rate\` | current rate + 30-period history |
+| \`https://github.com/htx-exchange/htx-skills-hub/oi-tracker\` | current OI + 24h trend |
+| \`https://github.com/htx-exchange/htx-skills-hub/elite-positioning\` | account ratio + position ratio |
+| \`https://github.com/htx-exchange/htx-skills-hub/liquidation-stream\` | recent 7d liquidations |
+| \`https://github.com/htx-exchange/htx-skills-hub/mark-price\` | basis kline (last 20 bars) |
 
 If those skills aren't installed, install them first:
 
 \`\`\`bash
-npx -y @htx-skills/funding-rate install
-npx -y @htx-skills/oi-tracker install
-npx -y @htx-skills/elite-positioning install
-npx -y @htx-skills/liquidation-stream install
-npx -y @htx-skills/mark-price install
+htx-cli skill install funding-rate
+htx-cli skill install oi-tracker
+htx-cli skill install elite-positioning
+htx-cli skill install liquidation-stream
+htx-cli skill install mark-price
 \`\`\`
 
 ## Standard workflow
@@ -144,11 +144,11 @@ These data gaps are documented so the agent can tell the user "we have X confide
 
 ## Related skills
 
-- \`@htx-skills/funding-rate\`, \`@htx-skills/oi-tracker\`, \`@htx-skills/elite-positioning\`, \`@htx-skills/liquidation-stream\`, \`@htx-skills/mark-price\` — data sources
-- \`@htx-skills/technical-analysis\` — pair derivatives pressure with price-action read
-- \`@htx-skills/sentiment-analyst\` — pair derivatives crowdedness with broader sentiment
+- \`https://github.com/htx-exchange/htx-skills-hub/funding-rate\`, \`https://github.com/htx-exchange/htx-skills-hub/oi-tracker\`, \`https://github.com/htx-exchange/htx-skills-hub/elite-positioning\`, \`https://github.com/htx-exchange/htx-skills-hub/liquidation-stream\`, \`https://github.com/htx-exchange/htx-skills-hub/mark-price\` — data sources
+- \`https://github.com/htx-exchange/htx-skills-hub/technical-analysis\` — pair derivatives pressure with price-action read
+- \`https://github.com/htx-exchange/htx-skills-hub/sentiment-analyst\` — pair derivatives crowdedness with broader sentiment
 `,
-  "elite-positioning/README.md": `# @htx-skills/elite-positioning
+  "elite-positioning/README.md": `# https://github.com/htx-exchange/htx-skills-hub/elite-positioning
 
 HTX (Huobi) **top-trader long/short ratio** skill for Claude Code. Distinguishes smart-money signals from retail crowd via dual-mode (account-based + position-based) ratios.
 
@@ -158,7 +158,7 @@ HTX (Huobi) **top-trader long/short ratio** skill for Claude Code. Distinguishes
 ## Install
 
 \`\`\`bash
-npx -y @htx-skills/elite-positioning install
+htx-cli skill install elite-positioning
 \`\`\`
 
 Target: \`~/.claude/skills/htx/elite-positioning/\`.
@@ -183,9 +183,9 @@ In Claude Code:
 
 ## Related skills
 
-- \`@htx-skills/funding-rate\`
-- \`@htx-skills/oi-tracker\`
-- \`@htx-skills/sentiment-analyst\`
+- \`https://github.com/htx-exchange/htx-skills-hub/funding-rate\`
+- \`https://github.com/htx-exchange/htx-skills-hub/oi-tracker\`
+- \`https://github.com/htx-exchange/htx-skills-hub/sentiment-analyst\`
 
 ## License
 
@@ -284,12 +284,12 @@ Always show:
 
 ## Related skills
 
-- \`@htx-skills/funding-rate\` — combine with funding for crowdedness picture
-- \`@htx-skills/oi-tracker\` — combine with OI for new positioning vs. unwinding
-- \`@htx-skills/sentiment-analyst\` — *(planned Layer 2)* uses elite ratio as a sentiment input
+- \`https://github.com/htx-exchange/htx-skills-hub/funding-rate\` — combine with funding for crowdedness picture
+- \`https://github.com/htx-exchange/htx-skills-hub/oi-tracker\` — combine with OI for new positioning vs. unwinding
+- \`https://github.com/htx-exchange/htx-skills-hub/sentiment-analyst\` — *(planned Layer 2)* uses elite ratio as a sentiment input
 `,
   "elite-positioning/package.json": `{
-  "name": "@htx-skills/elite-positioning",
+  "name": "https://github.com/htx-exchange/htx-skills-hub/elite-positioning",
   "version": "1.0.0",
   "description": "HTX USDT-M perpetual elite (top-trader) long/short ratio skill — both account-based and position-based, the core smart-money sentiment signal.",
   "bin": {
@@ -319,7 +319,7 @@ Always show:
   }
 }
 `,
-  "funding-rate/README.md": `# @htx-skills/funding-rate
+  "funding-rate/README.md": `# https://github.com/htx-exchange/htx-skills-hub/funding-rate
 
 HTX (Huobi) **USDT-M perpetual funding rate** skill for Claude Code. Current rate, batch all-contract rates, historical series, and estimated next-period rate kline.
 
@@ -329,7 +329,7 @@ HTX (Huobi) **USDT-M perpetual funding rate** skill for Claude Code. Current rat
 ## Install
 
 \`\`\`bash
-npx -y @htx-skills/funding-rate install
+htx-cli skill install funding-rate
 \`\`\`
 
 Target: \`~/.claude/skills/htx/funding-rate/\`.
@@ -337,10 +337,8 @@ Target: \`~/.claude/skills/htx/funding-rate/\`.
 ### Custom directory / force / uninstall
 
 \`\`\`bash
-npx -y @htx-skills/funding-rate install --dest /path/to/skills
-npx -y @htx-skills/funding-rate install --force
-npx -y @htx-skills/funding-rate uninstall
-npx -y @htx-skills/funding-rate path
+htx-cli skill install funding-rate
+htx-cli skill list
 \`\`\`
 
 Resolution order: \`--dest\` → \`\$CLAUDE_SKILLS_DIR\` → \`\$XDG_DATA_HOME/claude/skills\` → \`~/.claude/skills\`.
@@ -373,10 +371,10 @@ htx-cli futures market funding-rate BTC-USDT --json
 
 ## Related skills
 
-- \`@htx-skills/oi-tracker\` — open interest current + history
-- \`@htx-skills/elite-positioning\` — top-trader long/short ratio
-- \`@htx-skills/derivatives-analyst\` — multi-signal pressure scoring
-- \`@htx-skills/futures-market\` — general futures market data
+- \`https://github.com/htx-exchange/htx-skills-hub/oi-tracker\` — open interest current + history
+- \`https://github.com/htx-exchange/htx-skills-hub/elite-positioning\` — top-trader long/short ratio
+- \`https://github.com/htx-exchange/htx-skills-hub/derivatives-analyst\` — multi-signal pressure scoring
+- \`https://github.com/htx-exchange/htx-skills-hub/futures-market\` — general futures market data
 
 ## License
 
@@ -496,11 +494,11 @@ htx-cli funding-rate batch
 ## Installation
 
 \`\`\`bash
-npx -y @sheerl/htx-cli skill install funding-rate
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/latest/download/install.sh | bash -s -- funding-rate
 \`\`\`
 `,
   "funding-rate/package.json": `{
-  "name": "@htx-skills/funding-rate",
+  "name": "https://github.com/htx-exchange/htx-skills-hub/funding-rate",
   "version": "1.0.0",
   "description": "HTX USDT-M perpetual funding rate skill — current rate, batch all-contract rates, historical series, estimated rate kline. Public, no API key.",
   "bin": {
@@ -630,7 +628,7 @@ htx-cli futures call /v1/swap_ladder_margin --method GET -p contract_code=BTC-US
 ## Installation
 
 \`\`\`bash
-npx -y @sheerl/htx-cli skill install futures-account
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/latest/download/install.sh | bash -s -- futures-account
 \`\`\`
 `,
   "futures-market/SKILL.md": `---
@@ -753,7 +751,7 @@ htx-cli futures-market contract-info -p contract_code=BTC-USDT
 ## Installation
 
 \`\`\`bash
-npx -y @sheerl/htx-cli skill install futures-market
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/latest/download/install.sh | bash -s -- futures-market
 \`\`\`
 
 ## Related docs
@@ -980,14 +978,14 @@ For every leverage change:
 ## Installation
 
 \`\`\`bash
-npx -y @sheerl/htx-cli skill install futures-trading
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/latest/download/install.sh | bash -s -- futures-trading
 \`\`\`
 
 ## Related docs
 
 - HTX perpetual futures API: https://huobiapi.github.io/docs/usdt_swap/v1/cn/
 `,
-  "liquidation-stream/README.md": `# @htx-skills/liquidation-stream
+  "liquidation-stream/README.md": `# https://github.com/htx-exchange/htx-skills-hub/liquidation-stream
 
 HTX (Huobi) **USDT-M perpetual liquidation orders** skill for Claude Code. Forced-liquidation events for squeeze monitoring and cluster detection.
 
@@ -997,7 +995,7 @@ HTX (Huobi) **USDT-M perpetual liquidation orders** skill for Claude Code. Force
 ## Install
 
 \`\`\`bash
-npx -y @htx-skills/liquidation-stream install
+htx-cli skill install liquidation-stream
 \`\`\`
 
 ## Prerequisites
@@ -1017,9 +1015,9 @@ npx -y @htx-skills/liquidation-stream install
 
 ## Related skills
 
-- \`@htx-skills/funding-rate\`
-- \`@htx-skills/oi-tracker\`
-- \`@htx-skills/derivatives-analyst\`
+- \`https://github.com/htx-exchange/htx-skills-hub/funding-rate\`
+- \`https://github.com/htx-exchange/htx-skills-hub/oi-tracker\`
+- \`https://github.com/htx-exchange/htx-skills-hub/derivatives-analyst\`
 
 ## License
 
@@ -1108,12 +1106,12 @@ When summarizing liquidations, return:
 
 ## Related skills
 
-- \`@htx-skills/funding-rate\` — pre-squeeze crowdedness
-- \`@htx-skills/oi-tracker\` — post-squeeze OI drop confirms cascade
-- \`@htx-skills/derivatives-analyst\` — *(planned Layer 2)* combines liq + funding + OI for unified pressure score
+- \`https://github.com/htx-exchange/htx-skills-hub/funding-rate\` — pre-squeeze crowdedness
+- \`https://github.com/htx-exchange/htx-skills-hub/oi-tracker\` — post-squeeze OI drop confirms cascade
+- \`https://github.com/htx-exchange/htx-skills-hub/derivatives-analyst\` — *(planned Layer 2)* combines liq + funding + OI for unified pressure score
 `,
   "liquidation-stream/package.json": `{
-  "name": "@htx-skills/liquidation-stream",
+  "name": "https://github.com/htx-exchange/htx-skills-hub/liquidation-stream",
   "version": "1.0.0",
   "description": "HTX USDT-M perpetual liquidation orders skill — recent forced liquidation events for squeeze monitoring and cluster detection.",
   "bin": {
@@ -1215,9 +1213,9 @@ Return:
 
 ## Related skills
 
-- \`@htx-skills/funding-rate\` — premium drives funding direction
-- \`@htx-skills/futures-market\` — index price endpoint (basis denominator)
-- \`@htx-skills/derivatives-analyst\` — *(planned Layer 2)* combines mark/premium/funding/OI into pressure score
+- \`https://github.com/htx-exchange/htx-skills-hub/funding-rate\` — premium drives funding direction
+- \`https://github.com/htx-exchange/htx-skills-hub/futures-market\` — index price endpoint (basis denominator)
+- \`https://github.com/htx-exchange/htx-skills-hub/derivatives-analyst\` — *(planned Layer 2)* combines mark/premium/funding/OI into pressure score
 `,
   "market-overview/SKILL.md": `---
 name: htx-market-overview
@@ -1246,14 +1244,14 @@ If the user asks for a specific symbol, fall through to \`htx-spot-market\` (pri
 
 | Source | What it provides | Cost |
 |--------|------------------|------|
-| \`@htx-skills/spot-market\` | \`htx-cli spot market tickers\` — all-spot 24h tickers | free |
-| \`@htx-skills/futures-market\` | \`htx-cli futures market tickers\` — all-futures 24h tickers | free |
+| \`https://github.com/htx-exchange/htx-skills-hub/spot-market\` | \`htx-cli spot market tickers\` — all-spot 24h tickers | free |
+| \`https://github.com/htx-exchange/htx-skills-hub/futures-market\` | \`htx-cli futures market tickers\` — all-futures 24h tickers | free |
 
 If those Layer 1 skills aren't installed:
 
 \`\`\`bash
-npx -y @htx-skills/spot-market install
-npx -y @htx-skills/futures-market install
+htx-cli skill install spot-market
+htx-cli skill install futures-market
 \`\`\`
 
 ## Standard workflow
@@ -1361,10 +1359,10 @@ When the user asks an open-ended "what's happening" question, lead with:
 
 ## Related skills
 
-- \`@htx-skills/spot-market\`, \`@htx-skills/futures-market\` — data sources
-- \`@htx-skills/technical-analysis\` — drill-down on a specific symbol after the user picks one from the overview
-- \`@htx-skills/sentiment-analyst\` — frame the overview within a fear/greed context
-- \`@htx-skills/derivatives-analyst\` — for futures rallies, check if they're driven by leverage
+- \`https://github.com/htx-exchange/htx-skills-hub/spot-market\`, \`https://github.com/htx-exchange/htx-skills-hub/futures-market\` — data sources
+- \`https://github.com/htx-exchange/htx-skills-hub/technical-analysis\` — drill-down on a specific symbol after the user picks one from the overview
+- \`https://github.com/htx-exchange/htx-skills-hub/sentiment-analyst\` — frame the overview within a fear/greed context
+- \`https://github.com/htx-exchange/htx-skills-hub/derivatives-analyst\` — for futures rallies, check if they're driven by leverage
 
 ## References
 
@@ -1439,7 +1437,7 @@ The \`htx/market-overview\` skill uses this file for sector rotation analysis. E
 
 Periodically (monthly) scan the full market via \`tickers\` to check whether the top 50 coins by 24h volume have been mapped to a sector; if a new coin is unclassified, add it to the appropriate category.
 `,
-  "oi-tracker/README.md": `# @htx-skills/oi-tracker
+  "oi-tracker/README.md": `# https://github.com/htx-exchange/htx-skills-hub/oi-tracker
 
 HTX (Huobi) **USDT-M perpetual open interest** skill for Claude Code. Current OI snapshot + historical series.
 
@@ -1449,7 +1447,7 @@ HTX (Huobi) **USDT-M perpetual open interest** skill for Claude Code. Current OI
 ## Install
 
 \`\`\`bash
-npx -y @htx-skills/oi-tracker install
+htx-cli skill install oi-tracker
 \`\`\`
 
 Target: \`~/.claude/skills/htx/oi-tracker/\`.
@@ -1474,9 +1472,9 @@ In Claude Code:
 
 ## Related skills
 
-- \`@htx-skills/funding-rate\`
-- \`@htx-skills/elite-positioning\`
-- \`@htx-skills/derivatives-analyst\`
+- \`https://github.com/htx-exchange/htx-skills-hub/funding-rate\`
+- \`https://github.com/htx-exchange/htx-skills-hub/elite-positioning\`
+- \`https://github.com/htx-exchange/htx-skills-hub/derivatives-analyst\`
 
 ## License
 
@@ -1556,12 +1554,12 @@ Return:
 
 ## Related skills
 
-- \`@htx-skills/funding-rate\` — funding rate context for crowdedness
-- \`@htx-skills/elite-positioning\` — top-trader long/short ratio
-- \`@htx-skills/derivatives-analyst\` — *(planned Layer 2)* multi-signal pressure scoring
+- \`https://github.com/htx-exchange/htx-skills-hub/funding-rate\` — funding rate context for crowdedness
+- \`https://github.com/htx-exchange/htx-skills-hub/elite-positioning\` — top-trader long/short ratio
+- \`https://github.com/htx-exchange/htx-skills-hub/derivatives-analyst\` — *(planned Layer 2)* multi-signal pressure scoring
 `,
   "oi-tracker/package.json": `{
-  "name": "@htx-skills/oi-tracker",
+  "name": "https://github.com/htx-exchange/htx-skills-hub/oi-tracker",
   "version": "1.0.0",
   "description": "HTX USDT-M perpetual open interest skill — current OI snapshot and historical time series for trend and surge detection.",
   "bin": {
@@ -1618,14 +1616,14 @@ For pure derivatives crowdedness on a specific contract, prefer \`htx-derivative
 | Source | What it provides | Cost |
 |--------|------------------|------|
 | \`https://api.alternative.me/fng/\` (external) | Crypto Fear & Greed Index (0-100) — daily, free, no key | free |
-| \`@htx-skills/elite-positioning\` | top-trader account + position L/S ratio | free |
-| \`@htx-skills/spot-market\` | 24h gainers/losers via tickers endpoint | free |
+| \`https://github.com/htx-exchange/htx-skills-hub/elite-positioning\` | top-trader account + position L/S ratio | free |
+| \`https://github.com/htx-exchange/htx-skills-hub/spot-market\` | 24h gainers/losers via tickers endpoint | free |
 
 If those Layer 1 skills aren't installed:
 
 \`\`\`bash
-npx -y @htx-skills/elite-positioning install
-npx -y @htx-skills/spot-market install
+htx-cli skill install elite-positioning
+htx-cli skill install spot-market
 \`\`\`
 
 ## Standard workflow
@@ -1731,9 +1729,9 @@ These gaps are flagged in the output \`risk_warning\` so users know what's not m
 
 ## Related skills
 
-- \`@htx-skills/elite-positioning\`, \`@htx-skills/spot-market\` — data sources
-- \`@htx-skills/derivatives-analyst\` — combine with derivatives pressure for fuller picture
-- \`@htx-skills/market-overview\` — uses the same breadth computation in a different framing
+- \`https://github.com/htx-exchange/htx-skills-hub/elite-positioning\`, \`https://github.com/htx-exchange/htx-skills-hub/spot-market\` — data sources
+- \`https://github.com/htx-exchange/htx-skills-hub/derivatives-analyst\` — combine with derivatives pressure for fuller picture
+- \`https://github.com/htx-exchange/htx-skills-hub/market-overview\` — uses the same breadth computation in a different framing
 `,
   "settlement/SKILL.md": `---
 name: htx-settlement
@@ -1806,9 +1804,9 @@ For settlement queries:
 
 ## Related skills
 
-- \`@htx-skills/funding-rate\` — settlements happen alongside funding events
-- \`@htx-skills/liquidation-stream\` — liquidations feed the insurance fund
-- \`@htx-skills/derivatives-analyst\` — *(planned Layer 2)* multi-signal pressure scoring
+- \`https://github.com/htx-exchange/htx-skills-hub/funding-rate\` — settlements happen alongside funding events
+- \`https://github.com/htx-exchange/htx-skills-hub/liquidation-stream\` — liquidations feed the insurance fund
+- \`https://github.com/htx-exchange/htx-skills-hub/derivatives-analyst\` — *(planned Layer 2)* multi-signal pressure scoring
 `,
   "spot-account/SKILL.md": `---
 name: htx/spot-account
@@ -1906,7 +1904,7 @@ Before calling any transfer endpoint, **display to the user** source, destinatio
 ## Installation
 
 \`\`\`bash
-npx -y @sheerl/htx-cli skill install spot-account
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/latest/download/install.sh | bash -s -- spot-account
 \`\`\`
 `,
   "spot-market/SKILL.md": `---
@@ -2030,7 +2028,7 @@ htx-cli spot-market depth -p symbol=solusdt -p type=step0 -p depth=20
 ## Installation
 
 \`\`\`bash
-npx -y @sheerl/htx-cli skill install spot-market
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/latest/download/install.sh | bash -s -- spot-market
 \`\`\`
 
 ## Related docs
@@ -2174,7 +2172,7 @@ For every borrow:
 ## Installation
 
 \`\`\`bash
-npx -y @sheerl/htx-cli skill install spot-trading
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/latest/download/install.sh | bash -s -- spot-trading
 \`\`\`
 
 ## Related docs
@@ -2367,7 +2365,7 @@ Before installing this skill, ensure the following are installed:
 ## Installation
 
 \`\`\`bash
-npx -y @sheerl/htx-cli skill install ta-master
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/latest/download/install.sh | bash -s -- ta-master
 \`\`\`
 
 ## Typical questions
@@ -2710,7 +2708,7 @@ python scripts/cycle.py all --kline btc1d.json
 ## Installation
 
 \`\`\`bash
-npx -y @sheerl/htx-cli skill install technical-analysis
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/latest/download/install.sh | bash -s -- technical-analysis
 \`\`\`
 `,
   "technical-analysis/references/cycle.md": `# BTC Cycle Indicator Reference

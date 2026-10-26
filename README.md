@@ -49,7 +49,19 @@ Auto-detect platform and download the binary:
 curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/latest/download/install.sh | bash
 ```
 
-Or download manually from [Releases](https://github.com/htx-exchange/htx-skills-hub/releases):
+The installer verifies the binary's SHA256 against the release's `SHA256SUMS` and aborts on mismatch or if the checksum file is missing. Pin a version for reproducible installs:
+
+```bash
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/download/v0.1.0/install.sh | HTX_VERSION=v0.1.0 bash
+```
+
+Releases are built by GitHub Actions with a signed build-provenance attestation. `SHA256SUMS` alone cannot detect a compromised release (it ships in the same place as the binary), so to also verify provenance install the [GitHub CLI](https://cli.github.com) and set `HTX_REQUIRE_ATTESTATION=1`:
+
+```bash
+curl -fsSL https://github.com/htx-exchange/htx-skills-hub/releases/download/v0.1.0/install.sh | HTX_VERSION=v0.1.0 HTX_REQUIRE_ATTESTATION=1 bash
+```
+
+Or download manually from [Releases](https://github.com/htx-exchange/htx-skills-hub/releases) and check it against `SHA256SUMS` (`shasum -a 256 -c --ignore-missing SHA256SUMS`) before running:
 
 | Platform | File |
 |----------|------|

@@ -4,6 +4,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -72,6 +73,20 @@ async function compile() {
       console.error(`    ✗ Failed for ${target}: ${e.message}`);
     }
   }
+  await writeChecksums();
+}
+
+// install.sh refuses to install unless the release ships SHA256SUMS next to the binaries.
+async function writeChecksums() {
+  const lines = [];
+  for (const { out } of TARGETS) {
+    try {
+      const buf = await fs.readFile(path.join(DIST, out));
+      lines.push(`${createHash('sha256').update(buf).digest('hex')}  ${out}`);
+    } catch {}
+  }
+  await fs.writeFile(path.join(DIST, 'SHA256SUMS'), lines.join('\n') + '\n', 'utf8');
+  console.log(`  Wrote ${path.join(DIST, 'SHA256SUMS')} (${lines.length} entries)`);
 }
 
 const codegenOnly = process.argv.includes('--codegen-only');
