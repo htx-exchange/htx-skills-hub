@@ -130,6 +130,10 @@ htx-cli config set-secret <SecretKey>
 htx-cli config show
 ```
 
+## Optional Third-Party Research
+
+- [FarmDash Trail Intelligence](skills/farmdash/trail-intelligence/SKILL.md) — Read-only DeFi protocol, chain, event, and wallet-risk research. It does not access HTX accounts or place orders.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
